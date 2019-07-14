@@ -24,18 +24,20 @@ public class ASCIIService
         String ascii = "";
         int imageHeight = image.getHeight();
         int imageWidth = image.getWidth();
+        int pixelWidth = imageWidth > 500 ? imageWidth / 500 + 1 : 2;
+        int pixelSize = pixelWidth * pixelWidth;
         double currentRed = 0;
         double currentGreen = 0;
         double currentBlue = 0;
         double currentBrightness = 0;
         Color currentPixelColor;
-        for(int i = 0; i < imageHeight - 2; i+=2)
+        for(int i = 0; i < imageHeight - pixelWidth; i+=pixelWidth)
         {
-            for(int j = 0; j < imageWidth - 2; j+=2)
+            for(int j = 0; j < imageWidth - pixelWidth; j+=pixelWidth)
             {
-                for(int k = 0; k < 2; k++)
+                for(int k = 0; k < pixelWidth; k++)
                 {
-                    for(int l = 0; l < 2; l++)
+                    for(int l = 0; l < pixelWidth; l++)
                     {
                         currentPixelColor = new Color(image.getRGB(j+l, i+k));
                         currentRed += currentPixelColor.getRed();
@@ -44,9 +46,9 @@ public class ASCIIService
                     }
                 }
 
-                currentRed /= 4;
-                currentBlue /= 4;
-                currentGreen /= 4;
+                currentRed /= pixelSize;
+                currentBlue /= pixelSize;
+                currentGreen /= pixelSize;
                 currentRed /= 255;
                 currentBlue /= 255;
                 currentGreen /= 255;
