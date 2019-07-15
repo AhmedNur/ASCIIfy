@@ -21,7 +21,7 @@ public class ASCIIService
 
     public String bufferedImageToASCII(BufferedImage image)
     {
-        String ascii = "";
+        StringBuilder ascii = new StringBuilder();
         int imageHeight = image.getHeight();
         int imageWidth = image.getWidth();
         int pixelWidth = imageWidth > 500 ? imageWidth / 500 + 1 : 2;
@@ -56,48 +56,48 @@ public class ASCIIService
                 currentBrightness = (0.2126 * currentRed) + (0.7152 * currentGreen) + (0.0722 * currentBlue);
                 if(currentBrightness <= 0.1111)
                 {
-                    ascii += charGradient.charAt(8);
+                    ascii.append(charGradient.charAt(8));
                 }
                 else if(currentBrightness >= 0.1111 && currentBrightness < 0.2222)
                 {
-                    ascii += charGradient.charAt(7);
+                    ascii.append(charGradient.charAt(7));
                 }
                 else if (currentBrightness >= 0.2222 && currentBrightness < 0.3333)
                 {
-                    ascii += charGradient.charAt(6);
+                    ascii.append(charGradient.charAt(6));
                 }
                 else if (currentBrightness >= 0.3333 && currentBrightness < 0.4444)
                 {
-                    ascii += charGradient.charAt(5);
+                    ascii.append(charGradient.charAt(5));
                 }
                 else if (currentBrightness >= 0.4444 && currentBrightness < 0.5555)
                 {
-                    ascii += charGradient.charAt(4);
+                    ascii.append(charGradient.charAt(4));
                 }
                 else if (currentBrightness >= 0.5555 && currentBrightness < 0.6666)
                 {
-                    ascii += charGradient.charAt(3);
+                    ascii.append(charGradient.charAt(3));
                 }
                 else if (currentBrightness >= 0.6666 && currentBrightness < 0.7777)
                 {
-                    ascii += charGradient.charAt(2);
+                    ascii.append(charGradient.charAt(2));
                 }
                 else if (currentBrightness >= 0.7777 && currentBrightness < 0.8888)
                 {
-                    ascii += charGradient.charAt(1);
+                    ascii.append(charGradient.charAt(1));
                 }
                 else if (currentBrightness >= 0.8888)
                 {
-                    ascii += charGradient.charAt(0);
+                    ascii.append(charGradient.charAt(0));
                 }
                 else
                 {
                     System.out.println("Big oof." + currentBrightness);
                 }
             }
-            ascii += "\n";
+            ascii.append("\n");
         }
-        return ascii;
+        return ascii.toString();
     }
 
     public String ASCIIfy(MultipartFile file)
