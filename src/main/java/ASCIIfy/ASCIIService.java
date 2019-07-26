@@ -24,7 +24,7 @@ public class ASCIIService
         StringBuilder ascii = new StringBuilder();
         int imageHeight = image.getHeight();
         int imageWidth = image.getWidth();
-        int pixelWidth = imageWidth > 500 ? imageWidth / 500 + 1 : 2;
+        int pixelWidth = imageWidth > 200 ? imageWidth / 200 + 1 : 2;
         int pixelSize = pixelWidth * pixelWidth;
         double currentRed = 0;
         double currentGreen = 0;
