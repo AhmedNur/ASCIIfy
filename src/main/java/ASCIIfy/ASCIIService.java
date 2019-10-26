@@ -9,8 +9,7 @@ import java.awt.image.BufferedImage;
 import java.io.IOException;
 
 @Service
-public class ASCIIService
-{
+public class ASCIIService {
 
     private static final String charGradient = " .^*+#8B@";
 
@@ -19,8 +18,7 @@ public class ASCIIService
         return image;
     }
 
-    public String bufferedImageToASCII(BufferedImage image)
-    {
+    public String bufferedImageToASCII(BufferedImage image) {
         StringBuilder ascii = new StringBuilder();
         int imageHeight = image.getHeight();
         int imageWidth = image.getWidth();
@@ -31,14 +29,10 @@ public class ASCIIService
         double currentBlue = 0;
         double currentBrightness = 0;
         Color currentPixelColor;
-        for(int i = 0; i < imageHeight - pixelWidth; i+=pixelWidth)
-        {
-            for(int j = 0; j < imageWidth - pixelWidth; j+=pixelWidth)
-            {
-                for(int k = 0; k < pixelWidth; k++)
-                {
-                    for(int l = 0; l < pixelWidth; l++)
-                    {
+        for(int i = 0; i < imageHeight - pixelWidth; i+=pixelWidth) {
+            for(int j = 0; j < imageWidth - pixelWidth; j+=pixelWidth) {
+                for(int k = 0; k < pixelWidth; k++) {
+                    for(int l = 0; l < pixelWidth; l++) {
                         currentPixelColor = new Color(image.getRGB(j+l, i+k));
                         currentRed += currentPixelColor.getRed();
                         currentBlue += currentPixelColor.getBlue();
@@ -52,47 +46,34 @@ public class ASCIIService
                 currentRed /= 255;
                 currentBlue /= 255;
                 currentGreen /= 255;
-
                 currentBrightness = (0.2126 * currentRed) + (0.7152 * currentGreen) + (0.0722 * currentBlue);
-                if(currentBrightness <= 0.1111)
-                {
+
+                if(currentBrightness <= 0.1111) {
                     ascii.append(charGradient.charAt(8));
                 }
-                else if(currentBrightness >= 0.1111 && currentBrightness < 0.2222)
-                {
+                else if(currentBrightness >= 0.1111 && currentBrightness < 0.2222) {
                     ascii.append(charGradient.charAt(7));
                 }
-                else if (currentBrightness >= 0.2222 && currentBrightness < 0.3333)
-                {
+                else if (currentBrightness >= 0.2222 && currentBrightness < 0.3333) {
                     ascii.append(charGradient.charAt(6));
                 }
-                else if (currentBrightness >= 0.3333 && currentBrightness < 0.4444)
-                {
+                else if (currentBrightness >= 0.3333 && currentBrightness < 0.4444) {
                     ascii.append(charGradient.charAt(5));
                 }
-                else if (currentBrightness >= 0.4444 && currentBrightness < 0.5555)
-                {
+                else if (currentBrightness >= 0.4444 && currentBrightness < 0.5555) {
                     ascii.append(charGradient.charAt(4));
                 }
-                else if (currentBrightness >= 0.5555 && currentBrightness < 0.6666)
-                {
+                else if (currentBrightness >= 0.5555 && currentBrightness < 0.6666) {
                     ascii.append(charGradient.charAt(3));
                 }
-                else if (currentBrightness >= 0.6666 && currentBrightness < 0.7777)
-                {
+                else if (currentBrightness >= 0.6666 && currentBrightness < 0.7777) {
                     ascii.append(charGradient.charAt(2));
                 }
-                else if (currentBrightness >= 0.7777 && currentBrightness < 0.8888)
-                {
+                else if (currentBrightness >= 0.7777 && currentBrightness < 0.8888) {
                     ascii.append(charGradient.charAt(1));
                 }
-                else if (currentBrightness >= 0.8888)
-                {
+                else {
                     ascii.append(charGradient.charAt(0));
-                }
-                else
-                {
-                    System.out.println("Big oof." + currentBrightness);
                 }
             }
             ascii.append("\n");
@@ -100,9 +81,7 @@ public class ASCIIService
         return ascii.toString();
     }
 
-    public String ASCIIfy(MultipartFile file)
-    {
-        System.out.println(file.getContentType());
+    public String ASCIIfy(MultipartFile file) {
         if (file.isEmpty())
         {
             return "Error: No file uploaded.";
@@ -112,7 +91,7 @@ public class ASCIIService
             if(file.getContentType().equals("image/jpeg") || file.getContentType().equals("image/png"))
             {
                 BufferedImage image = multipartFileToBufferedImage(file);
-                return "<pre style=\"font-size:5px;line-height:3px;\">" + bufferedImageToASCII(image) + "</pre>";
+                return bufferedImageToASCII(image);
             }
         }
         catch (IOException e)
