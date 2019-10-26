@@ -19,7 +19,7 @@
         <npm.version>6.4.1</npm.version>
         <node.download.root>https://nodejs.org/dist/</node.download.root>
         <npm.download.root>http://registry.npmjs.org/npm/-/</npm.download.root>
-        <project.angular.root>${project.basedir}/src/main/ASCIIfy-front-end</project.angular.root>
+        <project.angular.root>${project.basedir}/src/main/ASCIIfy-Frontend</project.angular.root>
         <project.angular.dist>${project.angular.root}/dist/ASCIIfy-front-end</project.angular.dist>
         <!-- Backend properties -->
         <project.spring.resources>${project.basedir}/src/main/resources</project.spring.resources>

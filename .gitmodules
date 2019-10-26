@@ -1,0 +1,3 @@
+[submodule "src/main/ASCIIfy-Frontend"]
+	path = src/main/ASCIIfy-Frontend
+	url = https://github.com/AhmedNur/ASCIIfy-Frontend
